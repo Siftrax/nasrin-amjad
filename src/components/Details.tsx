@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   EVENT,
   downloadCalendarFile,
@@ -37,6 +37,11 @@ export function Details() {
   const [shareState, setShareState] = useState<
     "idle" | "shared" | "copied" | "failed"
   >("idle");
+  const [link, setLink] = useState("");
+
+  useEffect(() => {
+    setLink(window.location.href);
+  }, []);
 
   const onShare = async () => {
     setShareState("idle");
@@ -112,10 +117,22 @@ export function Details() {
                 : shareState === "shared"
                   ? "Thank you ✓"
                   : shareState === "failed"
-                    ? "Press & hold to copy"
+                    ? "Copy the link below"
                     : "Share invitation"}
             </button>
           </div>
+
+          {shareState === "failed" ? (
+            <div className="mx-auto mt-8 max-w-md text-center">
+              <p className="eyebrow text-[0.58rem]">Copy this link</p>
+              <input
+                readOnly
+                value={link}
+                onFocus={(e) => e.currentTarget.select()}
+                className="mt-3 w-full border border-gold/30 bg-night-deep/70 px-4 py-3 text-center text-sm text-sage focus:border-gold focus:outline-none"
+              />
+            </div>
+          ) : null}
 
           <p className="mx-auto mt-10 max-w-lg text-center text-sm leading-relaxed text-sage-dim">
             Guests are kindly requested to arrive a little before the ceremony
