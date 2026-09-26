@@ -549,3 +549,33 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── Refinements ────────────────────────────────────────── */
+
+/* Floating gold mote (geometry stays inline, the glow lives here) */
+.mote {
+  box-shadow: 0 0 10px 2px oklch(0.815 0.125 86 / 0.5);
+}
+
+/* Gold button: a soft lantern glow plus a thin inner rule */
+.btn-gold {
+  box-shadow:
+    0 16px 36px -20px oklch(0.815 0.125 86 / 0.6),
+    inset 0 0 0 1px oklch(0.905 0.095 96 / 0.14);
+}
+.btn-gold::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid oklch(0.815 0.125 86 / 0.22);
+  pointer-events: none;
+  transition: border-color 0.4s ease;
+}
+.btn-gold:hover::after {
+  border-color: oklch(0.112 0.028 172 / 0.35);
+}
+
+/* Ghost button: warms up without shouting */
+.btn-ghost:hover {
+  box-shadow: 0 14px 30px -22px oklch(0.815 0.125 86 / 0.55);
+}

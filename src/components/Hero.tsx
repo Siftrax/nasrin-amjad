@@ -95,7 +95,9 @@ export function Hero() {
       </div>
 
       <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-center">
-        <span className="eyebrow text-[0.55rem]">Kindly scroll</span>
+        <span className="eyebrow text-[0.62rem] text-gold-bright">
+          Kindly scroll
+        </span>
         <span className="mx-auto mt-3 block h-12 w-px overflow-hidden bg-gold/20">
           <span className="block h-4 w-px animate-bob bg-gold" />
         </span>

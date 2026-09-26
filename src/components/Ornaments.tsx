@@ -6,6 +6,9 @@ const rand = (n: number) => {
   return x - Math.floor(x);
 };
 
+/** Two-decimal strings keep server HTML and client props byte-identical. */
+const fx = (n: number) => n.toFixed(2);
+
 /** Full-bleed eight-point star lattice, drawn as an SVG pattern. */
 export function StarLattice({ className }: { className?: string }) {
   const id = useId().replace(/:/g, "");
@@ -258,19 +261,19 @@ export function Particles({ count = 30 }: { count?: number }) {
         const dur = 9 + rand(i * 13 + 3) * 14;
         const delay = rand(i * 17 + 4) * -20;
         const twinkle = 2.8 + rand(i * 19 + 5) * 4;
+        const glow = 0.35 + rand(i * 23) * 0.5;
         return (
           <span
             key={i}
-            className="absolute animate-drift rounded-full bg-gold"
+            className="mote absolute animate-drift rounded-full bg-gold"
             style={{
-              width: size,
-              height: size,
-              left: `${left}%`,
-              top: `${top}%`,
-              opacity: 0.35 + rand(i * 23) * 0.5,
-              boxShadow: "0 0 10px 2px rgba(212,168,90,.55)",
-              animationDuration: `${dur}s, ${twinkle}s`,
-              animationDelay: `${delay}s, ${delay / 2}s`,
+              width: `${fx(size)}px`,
+              height: `${fx(size)}px`,
+              left: `${fx(left)}%`,
+              top: `${fx(top)}%`,
+              opacity: fx(glow),
+              animationDuration: `${fx(dur)}s, ${fx(twinkle)}s`,
+              animationDelay: `${fx(delay)}s, ${fx(delay / 2)}s`,
             }}
           />
         );

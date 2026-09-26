@@ -31,7 +31,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 function Plate({ value, label }: { value: string; label: string }) {
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-5">
       <div className="plate relative grid h-20 w-[4.6rem] place-items-center sm:h-24 sm:w-28 md:h-28 md:w-32">
         <span
           key={value}
