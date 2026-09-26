@@ -87,7 +87,7 @@ export function Hero() {
                 {EVENT.venueName}
               </p>
               <p className="text-[0.68rem] uppercase tracking-[0.3em] text-sage-dim">
-                {EVENT.locality}
+                {EVENT.bride.locality}
               </p>
             </div>
           </div>

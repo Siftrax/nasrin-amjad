@@ -1,4 +1,4 @@
-import { useId } from "react";
+import { useId, type CSSProperties } from "react";
 
 /** Deterministic pseudo-random so server and client render identically. */
 const rand = (n: number) => {
