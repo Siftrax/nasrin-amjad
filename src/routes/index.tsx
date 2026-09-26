@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { TopBar } from "@/components/TopBar";
+import { EnvelopeIntro } from "@/components/EnvelopeIntro";
 import { Hero } from "@/components/Hero";
 import { Verse } from "@/components/Verse";
 import { Families } from "@/components/Families";
@@ -44,8 +45,10 @@ export const Route = createFileRoute("/")({
 
 function Invitation() {
   return (
-    <div className="min-h-screen bg-night-deep">
-      <TopBar />
+    <>
+      <EnvelopeIntro />
+      <div className="min-h-screen bg-night-deep">
+        <TopBar />
       <main>
         <Hero />
         <Verse />
@@ -59,6 +62,7 @@ function Invitation() {
         <Dua />
       </main>
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
