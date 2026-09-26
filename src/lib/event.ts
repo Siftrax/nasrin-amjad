@@ -40,13 +40,8 @@ export const EVENT = {
 /** Google Maps directions link for the hall. */
 export function mapsUrl(): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    `${EVENT.venueName}, ${EVENT.localityBoth()}`,
+    `${EVENT.venueName}, ${EVENT.venueLine}, ${EVENT.venueRegion}`,
   )}`;
-}
-
-/** Small helper so the maps query and the printed venue never drift apart. */
-function localityBoth(): string {
-  return `${EVENT.venueLine}, ${EVENT.venueRegion}`;
 }
 
 const toStamp = (d: Date): string =>
