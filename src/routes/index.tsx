@@ -9,6 +9,7 @@ import { Details } from "@/components/Details";
 import { Dua } from "@/components/Dua";
 import { Footer } from "@/components/Footer";
 import { MarqueeStrip } from "@/components/Ornaments";
+import { Timeline } from "@/components/Timeline";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,6 +54,7 @@ function Invitation() {
           <Countdown />
         </div>
         <MarqueeStrip />
+        <Timeline />
         <Details />
         <Dua />
       </main>

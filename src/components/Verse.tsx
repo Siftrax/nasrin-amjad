@@ -29,19 +29,14 @@ export function Verse() {
 
         <Reveal delay={120}>
           <p className="arabic text-2xl sm:text-[1.9rem]">
-            وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا
-            لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ
-            إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
+            وَخَلَقْنَاكُمْ أَزْوَاجًا
           </p>
           <div className="rule-gold mt-8" />
           <p className="mt-8 font-display text-xl italic leading-relaxed text-parchment/90 sm:text-2xl">
-            “And among His signs is that He created for you mates from among
-            yourselves, that you may find tranquillity in them; and He placed
-            between you affection and mercy. Indeed in that are signs for a
-            people who reflect.”
+            “And We created you in pairs.”
           </p>
           <p className="eyebrow mt-6 text-[0.6rem]">
-            Surah Ar-Rum · 30 : 21
+            Surah An-Naba · 78 : 8
           </p>
         </Reveal>
       </div>
