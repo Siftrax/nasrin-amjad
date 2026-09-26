@@ -40,7 +40,7 @@ export const EVENT = {
 /** Google Maps directions link for the hall. */
 export function mapsUrl(): string {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    `${EVENT.venueName}, ${EVENT.venueLine}, ${EVENT.venueRegion}`,
+    `${EVENT.venueLine}, ${EVENT.venueRegion}`,
   )}`;
 }
 
