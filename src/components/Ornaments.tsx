@@ -97,7 +97,7 @@ export function ArchFrame({ className }: { className?: string }) {
         strokeWidth="1.1"
         pathLength={1}
         strokeDasharray="1"
-        style={{ ["--dash" as string]: 1 }}
+        style={{ "--dash": 1 } as CSSProperties}
         className="animate-draw"
       />
       <path
@@ -107,7 +107,7 @@ export function ArchFrame({ className }: { className?: string }) {
         opacity="0.55"
         pathLength={1}
         strokeDasharray="1"
-        style={{ ["--dash" as string]: 1, animationDelay: "0.35s" }}
+        style={{ "--dash": 1, animationDelay: "0.35s" } as CSSProperties}
         className="animate-draw"
       />
     </svg>
