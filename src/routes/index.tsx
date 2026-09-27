@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { TopBar } from "@/components/TopBar";
-import { EnvelopeIntro } from "@/components/EnvelopeIntro";
 import { Hero } from "@/components/Hero";
 import { Verse } from "@/components/Verse";
 import { Families } from "@/components/Families";
@@ -10,7 +9,6 @@ import { Details } from "@/components/Details";
 import { Dua } from "@/components/Dua";
 import { Footer } from "@/components/Footer";
 import { MarqueeStrip } from "@/components/Ornaments";
-import { Timeline } from "@/components/Timeline";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -45,10 +43,8 @@ export const Route = createFileRoute("/")({
 
 function Invitation() {
   return (
-    <>
-      <EnvelopeIntro />
-      <div className="min-h-screen bg-night-deep">
-        <TopBar />
+    <div className="min-h-screen bg-night-deep">
+      <TopBar />
       <main>
         <Hero />
         <Verse />
@@ -57,12 +53,10 @@ function Invitation() {
           <Countdown />
         </div>
         <MarqueeStrip />
-        <Timeline />
         <Details />
         <Dua />
       </main>
       <Footer />
-      </div>
-    </>
+    </div>
   );
 }
