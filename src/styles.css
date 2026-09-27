@@ -8,47 +8,48 @@
  * ─────────────────────────────────────────────────────────────
  *  NASRIN  ✦  AMJAD — Nikah invitation design system
  *
- *  "Timeless Grace": warm ivory parchment grounds, antique gold
- *  foil line-work, sculpted Islamic arch geometry, script names.
+ *  A single dark, jewel-box theme: deep emerald "night" grounds,
+ *  antique gold foil line-work, Mughal arch geometry.
  *  Every colour, gradient, shadow and motion lives here —
- *  components only reference these tokens (bg-gold, text-ink…).
+ *  components only reference these tokens (bg-gold, text-parchment…).
  * ─────────────────────────────────────────────────────────────
  */
 
 /* ── Values ─────────────────────────────────────────────── */
 :root {
   --radius: 0.625rem;
-  color-scheme: light;
+  color-scheme: dark;
 
-  /* Surfaces — warm ivory parchment */
-  --night-deep: oklch(0.973 0.014 78);
-  --night: oklch(0.962 0.02 84);
-  --night-raise: oklch(0.951 0.025 86);
-  --night-lift: oklch(0.936 0.03 86);
+  /* Surfaces — deep emerald night */
+  --night-deep: oklch(0.112 0.028 172);
+  --night: oklch(0.165 0.036 168);
+  --night-raise: oklch(0.212 0.042 168);
+  --night-lift: oklch(0.262 0.046 168);
 
-  /* Ink — warm gold-brown */
-  --parchment: oklch(0.505 0.048 84);
-  --sage: oklch(0.545 0.046 82);
-  --sage-dim: oklch(0.615 0.042 82);
+  /* Ink */
+  --parchment: oklch(0.965 0.02 92);
+  --sage: oklch(0.82 0.032 165);
+  --sage-dim: oklch(0.68 0.036 165);
 
   /* Antique gold */
-  --gold: oklch(0.63 0.084 82);
-  --gold-bright: oklch(0.735 0.082 84);
-  --gold-deep: oklch(0.505 0.078 68);
-  --gold-mist: oklch(0.63 0.084 82 / 0.1);
-  --gold-line: oklch(0.63 0.084 82 / 0.3);
+  --gold: oklch(0.815 0.125 86);
+  --gold-bright: oklch(0.905 0.095 96);
+  --gold-deep: oklch(0.64 0.105 76);
+  --gold-mist: oklch(0.815 0.125 86 / 0.14);
+  --gold-line: oklch(0.815 0.125 86 / 0.26);
 
   /* Accents */
-  --rose: oklch(0.82 0.05 30);
-  --jade: oklch(0.78 0.04 150);
+  --rose: oklch(0.755 0.09 16);
+  --jade: oklch(0.76 0.09 160);
 
   /* Shadows & washes */
-  --shadow-vault: 0 30px 60px -38px oklch(0.44 0.06 70 / 0.42);
-  --shadow-gold: 0 20px 50px -28px oklch(0.63 0.084 82 / 0.55);
+  --shadow-vault: 0 40px 80px -40px oklch(0 0 0 / 0.85);
+  --shadow-gold: 0 22px 60px -28px oklch(0.815 0.125 86 / 0.45);
   --vignette: radial-gradient(
     120% 90% at 50% 0%,
-    oklch(0.99 0.012 88 / 0.9) 0%,
-    oklch(0.973 0.014 78 / 0) 55%
+    oklch(0.815 0.125 86 / 0.12) 0%,
+    oklch(0 0 0 / 0) 45%,
+    oklch(0 0 0 / 0.55) 100%
   );
 
   /* ── shadcn mapping (keeps ui/ components on-theme) ── */
@@ -59,18 +60,18 @@
   --popover: var(--night);
   --popover-foreground: var(--parchment);
   --primary: var(--gold);
-  --primary-foreground: oklch(0.99 0.008 88);
+  --primary-foreground: var(--night-deep);
   --secondary: var(--night-raise);
   --secondary-foreground: var(--parchment);
   --muted: var(--night);
   --muted-foreground: var(--sage-dim);
   --accent: var(--gold-mist);
-  --accent-foreground: var(--gold-deep);
+  --accent-foreground: var(--gold-bright);
   --destructive: oklch(0.585 0.22 25);
-  --destructive-foreground: oklch(0.99 0.008 88);
+  --destructive-foreground: var(--parchment);
   --border: var(--gold-line);
-  --input: oklch(0.63 0.084 82 / 0.35);
-  --ring: oklch(0.63 0.084 82 / 0.55);
+  --input: oklch(0.815 0.125 86 / 0.32);
+  --ring: oklch(0.815 0.125 86 / 0.55);
   --chart-1: var(--gold);
   --chart-2: var(--jade);
   --chart-3: var(--rose);
@@ -79,9 +80,9 @@
   --sidebar: var(--night);
   --sidebar-foreground: var(--parchment);
   --sidebar-primary: var(--gold);
-  --sidebar-primary-foreground: oklch(0.99 0.008 88);
+  --sidebar-primary-foreground: var(--night-deep);
   --sidebar-accent: var(--gold-mist);
-  --sidebar-accent-foreground: var(--gold-deep);
+  --sidebar-accent-foreground: var(--gold-bright);
   --sidebar-border: var(--gold-line);
   --sidebar-ring: var(--ring);
 }
@@ -150,9 +151,7 @@
 
 @theme {
   --font-display: "Cormorant Garamond", "Georgia", serif;
-  --font-script: "Pinyon Script", "Cormorant Garamond", cursive;
-  --font-caps: "Cinzel", "Cormorant Garamond", serif;
-  --font-body: "Cormorant Garamond", "Georgia", serif;
+  --font-body: "Jost", ui-sans-serif, system-ui, sans-serif;
   --font-arabic: "Amiri", "Scheherazade New", serif;
 
   --animate-foil: foil-sweep 7s linear infinite;
@@ -167,7 +166,6 @@
   --animate-draw: draw 2.4s ease-out forwards;
   --animate-rise: rise 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-open: open 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-  --animate-sheen: sheen 3.6s ease-in-out infinite;
 }
 
 /* ── Keyframes ──────────────────────────────────────────── */
@@ -191,7 +189,7 @@
 @keyframes twinkle {
   0%,
   100% {
-    opacity: 0.25;
+    opacity: 0.2;
     transform: scale(0.85);
   }
   50% {
@@ -270,15 +268,6 @@
     opacity: 1;
   }
 }
-@keyframes sheen {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
 
 /* ── Base ───────────────────────────────────────────────── */
 @layer base {
@@ -295,15 +284,15 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body);
-    font-weight: 400;
-    letter-spacing: 0.008em;
+    font-weight: 300;
+    letter-spacing: 0.012em;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
     background: var(--color-gold);
-    color: oklch(0.99 0.008 88);
+    color: var(--color-night-deep);
   }
 
   h1,
@@ -318,14 +307,14 @@
     width: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-night);
+    background: var(--color-night-deep);
   }
   ::-webkit-scrollbar-thumb {
-    background: oklch(0.63 0.084 82 / 0.35);
+    background: oklch(0.815 0.125 86 / 0.35);
     border-radius: 99px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: oklch(0.63 0.084 82 / 0.6);
+    background: oklch(0.815 0.125 86 / 0.6);
   }
 }
 
@@ -352,35 +341,28 @@
   animation: var(--animate-foil);
 }
 
-/* Big flowing script name */
-.script {
-  font-family: var(--font-script);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: 0.01em;
-}
-
 /* Tracked-out small caps label */
 .eyebrow {
-  font-family: var(--font-caps);
-  font-weight: 500;
+  font-family: var(--font-body);
+  font-weight: 400;
   font-size: 0.68rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.42em;
   text-transform: uppercase;
-  color: var(--parchment);
+  color: var(--gold);
 }
 
 /* Ornate panel with bracketed corners */
 .ornate {
   position: relative;
-  background: linear-gradient(
-    180deg,
-    oklch(0.995 0.01 88 / 0.85) 0%,
-    oklch(0.962 0.02 84 / 0.7) 100%
-  );
+  background:
+    linear-gradient(
+      180deg,
+      oklch(0.262 0.046 168 / 0.72) 0%,
+      oklch(0.165 0.036 172 / 0.9) 100%
+    );
   border: 1px solid var(--gold-line);
   box-shadow:
-    inset 0 1px 0 oklch(1 0 0 / 0.7),
+    inset 0 1px 0 oklch(0.905 0.095 96 / 0.1),
     var(--shadow-vault);
   backdrop-filter: blur(6px);
 }
@@ -391,7 +373,7 @@
   width: 26px;
   height: 26px;
   border-color: var(--gold);
-  opacity: 0.7;
+  opacity: 0.75;
   pointer-events: none;
   transition:
     width 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -422,9 +404,9 @@
   height: 1px;
   background: linear-gradient(
     90deg,
-    oklch(0.63 0.084 82 / 0) 0%,
-    oklch(0.63 0.084 82 / 0.6) 50%,
-    oklch(0.63 0.084 82 / 0) 100%
+    oklch(0.815 0.125 86 / 0) 0%,
+    oklch(0.815 0.125 86 / 0.55) 50%,
+    oklch(0.815 0.125 86 / 0) 100%
   );
 }
 
@@ -449,25 +431,24 @@
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  padding: 0.8rem 1.7rem;
-  border-radius: 999px;
-  border: 1px solid oklch(0.63 0.084 82 / 0.55);
-  color: oklch(0.995 0.008 88);
+  padding: 0.8rem 1.6rem;
+  border: 1px solid var(--gold);
+  color: var(--gold-bright);
   background: linear-gradient(
     180deg,
-    var(--gold-bright) 0%,
-    var(--gold) 100%
+    oklch(0.815 0.125 86 / 0.16),
+    oklch(0.815 0.125 86 / 0.04)
   );
-  font-family: var(--font-caps);
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  box-shadow: 0 14px 30px -18px oklch(0.63 0.084 82 / 0.85);
   transition:
+    color 0.4s ease,
     box-shadow 0.4s ease,
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .btn-gold:hover {
+  color: var(--night-deep);
   box-shadow: var(--shadow-gold);
   transform: translateY(-2px);
 }
@@ -477,15 +458,17 @@
   inset: 0;
   background: linear-gradient(
     120deg,
-    oklch(1 0 0 / 0) 0%,
-    oklch(1 0 0 / 0.55) 50%,
-    oklch(1 0 0 / 0) 100%
+    oklch(0.815 0.125 86 / 0) 0%,
+    oklch(0.905 0.095 96 / 0.9) 50%,
+    oklch(0.815 0.125 86 / 0) 100%
   );
   transform: translateX(-110%);
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: -1;
 }
 .btn-gold:hover::before {
   transform: translateX(110%);
+  background: var(--gold);
 }
 
 /* Quiet ghost button */
@@ -493,25 +476,21 @@
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  padding: 0.8rem 1.5rem;
-  border-radius: 999px;
+  padding: 0.8rem 1.4rem;
   border: 1px solid var(--gold-line);
-  color: var(--gold-deep);
-  font-family: var(--font-caps);
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
+  color: var(--sage);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   transition:
     color 0.35s ease,
     border-color 0.35s ease,
-    background-color 0.35s ease,
-    box-shadow 0.35s ease;
+    background-color 0.35s ease;
 }
 .btn-ghost:hover {
-  color: var(--gold-deep);
+  color: var(--gold-bright);
   border-color: var(--gold);
   background-color: var(--gold-mist);
-  box-shadow: 0 14px 30px -24px oklch(0.63 0.084 82 / 0.7);
 }
 
 /* Arabic line */
@@ -519,15 +498,16 @@
   font-family: var(--font-arabic);
   direction: rtl;
   line-height: 2.1;
-  color: var(--gold);
+  color: var(--gold-bright);
+  text-shadow: 0 0 34px oklch(0.815 0.125 86 / 0.35);
 }
 
 /* Soft lantern halo */
 .halo {
   background: radial-gradient(
     50% 50% at 50% 50%,
-    oklch(0.63 0.084 82 / 0.22) 0%,
-    oklch(0.63 0.084 82 / 0) 70%
+    oklch(0.815 0.125 86 / 0.32) 0%,
+    oklch(0.815 0.125 86 / 0) 70%
   );
   filter: blur(6px);
 }
@@ -540,37 +520,15 @@
 /* Number plate for the countdown */
 .plate {
   position: relative;
-  border-radius: 0.4rem;
   background: linear-gradient(
     180deg,
-    oklch(0.995 0.01 88 / 0.95),
-    oklch(0.951 0.025 86 / 0.9)
+    oklch(0.262 0.046 168 / 0.9),
+    oklch(0.112 0.028 172 / 0.95)
   );
   border: 1px solid var(--gold-line);
   box-shadow:
-    inset 0 1px 0 oklch(1 0 0 / 0.8),
-    0 16px 34px -26px oklch(0.44 0.06 70 / 0.5);
-}
-
-/* Brushed gold foil surface — the scratch cards */
-.foil-surface {
-  background-image: linear-gradient(
-    118deg,
-    oklch(0.72 0.075 82) 0%,
-    oklch(0.9 0.05 92) 18%,
-    oklch(0.78 0.08 82) 34%,
-    oklch(0.95 0.035 95) 52%,
-    oklch(0.75 0.08 80) 70%,
-    oklch(0.89 0.05 92) 86%,
-    oklch(0.72 0.075 82) 100%
-  );
-  background-size: 220% 100%;
-  animation: var(--animate-sheen);
-}
-
-/* Floating gold mote (geometry stays inline, the glow lives here) */
-.mote {
-  box-shadow: 0 0 8px 2px oklch(0.63 0.084 82 / 0.35);
+    inset 0 1px 0 oklch(0.905 0.095 96 / 0.12),
+    inset 0 -18px 34px -20px oklch(0 0 0 / 0.8);
 }
 
 /* ── Motion courtesy ────────────────────────────────────── */
@@ -590,4 +548,34 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ── Refinements ────────────────────────────────────────── */
+
+/* Floating gold mote (geometry stays inline, the glow lives here) */
+.mote {
+  box-shadow: 0 0 10px 2px oklch(0.815 0.125 86 / 0.5);
+}
+
+/* Gold button: a soft lantern glow plus a thin inner rule */
+.btn-gold {
+  box-shadow:
+    0 16px 36px -20px oklch(0.815 0.125 86 / 0.6),
+    inset 0 0 0 1px oklch(0.905 0.095 96 / 0.14);
+}
+.btn-gold::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid oklch(0.815 0.125 86 / 0.22);
+  pointer-events: none;
+  transition: border-color 0.4s ease;
+}
+.btn-gold:hover::after {
+  border-color: oklch(0.112 0.028 172 / 0.35);
+}
+
+/* Ghost button: warms up without shouting */
+.btn-ghost:hover {
+  box-shadow: 0 14px 30px -22px oklch(0.815 0.125 86 / 0.55);
 }
