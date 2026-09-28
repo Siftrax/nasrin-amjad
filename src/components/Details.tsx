@@ -1,143 +1,81 @@
-import { useEffect, useState } from "react";
-import {
-  EVENT,
-  downloadCalendarFile,
-  mapsUrl,
-  shareInvitation,
-} from "@/lib/event";
+import { useState } from "react";
+
+import { EVENT, downloadCalendarFile, mapsUrl, shareInvitation } from "@/lib/event";
 import { Reveal } from "@/components/Reveal";
-import { Divider, StarLattice } from "@/components/Ornaments";
+import { Divider, Star8 } from "@/components/Ornaments";
 
-function InfoBlock({
-  eyebrow,
-  value,
-  sub,
-}: {
-  eyebrow: string;
-  value: string;
-  sub?: string;
-}) {
-  return (
-    <div className="ornate px-6 py-10 text-center transition-transform duration-700 hover:-translate-y-1">
-      <p className="eyebrow text-[0.58rem]">{eyebrow}</p>
-      <p className="foil mt-5 font-display text-2xl leading-tight sm:text-3xl">
-        {value}
-      </p>
-      {sub ? (
-        <p className="mt-4 text-[0.7rem] uppercase tracking-[0.24em] text-sage-dim">
-          {sub}
-        </p>
-      ) : null}
-    </div>
-  );
-}
-
-/** Date, time, venue and the three actions a guest needs. */
+/** Date, time, venue and the practical actions. */
 export function Details() {
-  const [shareState, setShareState] = useState<
-    "idle" | "shared" | "copied" | "failed"
-  >("idle");
-  const [link, setLink] = useState("");
-
-  useEffect(() => {
-    setLink(window.location.href);
-  }, []);
-
-  const onShare = async () => {
-    setShareState("idle");
-    const result = await shareInvitation();
-    setShareState(result);
-  };
+  const [note, setNote] = useState<string | null>(null);
 
   return (
-    <section
-      id="details"
-      className="relative overflow-hidden border-y border-gold/10 bg-night py-24 sm:py-32"
-    >
-      <StarLattice className="absolute inset-0 text-gold/15 opacity-70" />
-      <div className="absolute inset-0" style={{ background: "var(--vignette)" }} />
-
-      <div className="relative mx-auto max-w-5xl px-5">
-        <Reveal className="text-center">
-          <span className="eyebrow">When &amp; where</span>
-          <h2 className="mt-5 font-display text-4xl text-parchment sm:text-5xl">
-            The Invitation
-          </h2>
-          <Divider className="mx-auto mt-8 max-w-md" />
+    <section className="px-5 py-20 sm:py-28">
+      <div className="mx-auto max-w-2xl text-center">
+        <Reveal>
+          <p className="eyebrow">Ceremony &amp; Venue</p>
+          <Divider className="mt-6" />
         </Reveal>
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-3">
-          <Reveal delay={0}>
-            <InfoBlock
-              eyebrow="The Day"
-              value={EVENT.dateLong}
-              sub={EVENT.dateShort}
-            />
-          </Reveal>
-          <Reveal delay={120}>
-            <InfoBlock
-              eyebrow="The Hour"
-              value={EVENT.timeShort}
-              sub="In the morning"
-            />
-          </Reveal>
-          <Reveal delay={240}>
-            <InfoBlock
-              eyebrow="The Place"
-              value={EVENT.venueName}
-              sub={`${EVENT.venueLine}, ${EVENT.venueRegion}`}
-            />
-          </Reveal>
-        </div>
+        <Reveal delay={100}>
+          <div className="card-paper mt-12 px-6 py-12 sm:px-12">
+            <Star8 className="mx-auto h-5 w-5 text-gold" />
 
-        <Reveal delay={320} className="mt-14">
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <button
-              type="button"
-              onClick={() => downloadCalendarFile()}
-              className="btn-gold"
-            >
-              Add to calendar
-            </button>
-            <a
-              href={mapsUrl()}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-ghost"
-            >
-              Get directions
-            </a>
-            <button
-              type="button"
-              onClick={onShare}
-              className="btn-ghost"
-            >
-              {shareState === "copied"
-                ? "Link copied ✓"
-                : shareState === "shared"
-                  ? "Thank you ✓"
-                  : shareState === "failed"
-                    ? "Copy the link below"
-                    : "Share invitation"}
-            </button>
-          </div>
+            <p className="mt-6 font-display text-lg tracking-[0.2em] uppercase text-ink">
+              {EVENT.dateLong}
+            </p>
+            <p className="mt-3 font-body text-2xl italic text-gold-deep">
+              {EVENT.timeLong}
+            </p>
 
-          {shareState === "failed" ? (
-            <div className="mx-auto mt-8 max-w-md text-center">
-              <p className="eyebrow text-[0.58rem]">Copy this link</p>
-              <input
-                readOnly
-                value={link}
-                onFocus={(e) => e.currentTarget.select()}
-                className="mt-3 w-full border border-gold/30 bg-night-deep/70 px-4 py-3 text-center text-sm text-sage focus:border-gold focus:outline-none"
-              />
+            <span className="rule-gold mx-auto mt-8 block w-40" />
+
+            <p className="mt-8 font-display text-2xl text-ink sm:text-3xl">
+              {EVENT.venueName}
+            </p>
+            <p className="mt-2 font-body text-lg italic text-ink-soft">
+              {EVENT.venueRegion}
+            </p>
+
+            <div className="mt-10 flex flex-wrap justify-center gap-3">
+              <a
+                href={mapsUrl()}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-gold"
+              >
+                Get directions
+              </a>
+              <button
+                type="button"
+                onClick={() => downloadCalendarFile()}
+                className="btn-ghost"
+              >
+                Add to calendar
+              </button>
+              <button
+                type="button"
+                onClick={async () => {
+                  const r = await shareInvitation();
+                  setNote(
+                    r === "copied"
+                      ? "Link copied."
+                      : r === "failed"
+                        ? "Couldn't share — please copy the address bar."
+                        : null,
+                  );
+                }}
+                className="btn-ghost"
+              >
+                Share
+              </button>
             </div>
-          ) : null}
 
-          <p className="mx-auto mt-10 max-w-lg text-center text-sm leading-relaxed text-sage-dim">
-            Guests are kindly requested to arrive a little before the ceremony
-            so that the nikah may begin on time.
-          </p>
+            {note ? (
+              <p className="mt-5 font-body text-base italic text-ink-soft">
+                {note}
+              </p>
+            ) : null}
+          </div>
         </Reveal>
       </div>
     </section>
