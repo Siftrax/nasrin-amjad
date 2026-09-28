@@ -1,283 +1,170 @@
-import { useId, type CSSProperties } from "react";
+/**
+ * Shared decorative line-work. All geometry is fixed (no randomness at
+ * render) so the server and client markup match exactly.
+ */
 
-/** Deterministic pseudo-random so server and client render identically. */
-const rand = (n: number) => {
-  const x = Math.sin(n * 127.1 + 311.7) * 43758.5453;
-  return x - Math.floor(x);
-};
+const fx = (n: number, places = 3): string => n.toFixed(places);
 
-/** Two-decimal strings keep server HTML and client props byte-identical. */
-const fx = (n: number) => n.toFixed(2);
-
-/** Full-bleed eight-point star lattice, drawn as an SVG pattern. */
-export function StarLattice({ className }: { className?: string }) {
-  const id = useId().replace(/:/g, "");
+/** Eight-pointed Islamic star. */
+export function Star8({ className = "" }: { className?: string }) {
   return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      width="100%"
-      height="100%"
-      preserveAspectRatio="none"
-    >
-      <defs>
-        <pattern
-          id={`lattice-${id}`}
-          width="46"
-          height="46"
-          patternUnits="userSpaceOnUse"
-        >
-          <g
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.7"
-            opacity="0.5"
-            transform="translate(23 23)"
-          >
-            <rect x="-9" y="-9" width="18" height="18" />
-            <rect x="-9" y="-9" width="18" height="18" transform="rotate(45)" />
-            <circle r="2" />
-            <path d="M0 -23 L0 -13 M0 13 L0 23 M-23 0 L-13 0 M13 0 L23 0" />
-          </g>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill={`url(#lattice-${id})`} />
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path
+        d="M12 1.5 14.4 7 20 4.6 17.6 10.2 23 12l-5.4 1.8L20 19.4 14.4 17 12 22.5 9.6 17 4 19.4l2.4-5.6L1 12l5.4-1.8L4 4.6 9.6 7Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="0.7"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
 
-/** A single eight-point star. */
-export function Star8({
-  className,
-  size = 14,
-}: {
-  className?: string;
-  size?: number;
-}) {
+/** Slim divider: rule — star — rule. */
+export function Divider({ className = "" }: { className?: string }) {
   return (
-    <svg
-      aria-hidden="true"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.1"
-    >
-      <rect x="5" y="5" width="14" height="14" />
-      <rect x="5" y="5" width="14" height="14" transform="rotate(45 12 12)" />
-    </svg>
-  );
-}
-
-/** Ornamental horizontal divider: rule — star — rule. */
-export function Divider({ className }: { className?: string }) {
-  return (
-    <div className={`flex items-center gap-4 ${className ?? ""}`}>
-      <span className="rule-gold flex-1" />
-      <Star8 className="animate-twinkle text-gold" size={13} />
-      <span className="h-1 w-1 rotate-45 border border-gold/70" />
-      <Star8 className="animate-twinkle text-gold" size={13} />
-      <span className="rule-gold flex-1" />
+    <div className={`flex items-center justify-center gap-4 ${className}`}>
+      <span className="rule-gold w-16 sm:w-28" />
+      <Star8 className="h-4 w-4 text-gold" />
+      <span className="rule-gold w-16 sm:w-28" />
     </div>
   );
 }
 
-/** Pointed Mughal arch that draws itself on load. */
-export function ArchFrame({ className }: { className?: string }) {
+/** Intertwined N & A monogram inside a gold ring. */
+export function Monogram({ className = "" }: { className?: string }) {
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 600 820"
-      preserveAspectRatio="none"
-      className={className}
-      fill="none"
-    >
-      <path
-        d="M40 800 V340 C40 180 160 80 300 30 C440 80 560 180 560 340 V800"
+    <svg viewBox="0 0 120 120" className={className} aria-hidden="true">
+      <circle
+        cx="60"
+        cy="60"
+        r="54"
+        fill="none"
         stroke="currentColor"
-        strokeWidth="1.1"
-        pathLength={1}
-        strokeDasharray="1"
-        style={{ "--dash": 1 } as CSSProperties}
-        className="animate-draw"
-      />
-      <path
-        d="M74 800 V352 C74 208 178 116 300 70 C422 116 526 208 526 352 V800"
-        stroke="currentColor"
-        strokeWidth="0.6"
+        strokeWidth="0.9"
         opacity="0.55"
-        pathLength={1}
-        strokeDasharray="1"
-        style={{ "--dash": 1, animationDelay: "0.35s" } as CSSProperties}
+      />
+      <circle
+        cx="60"
+        cy="60"
+        r="48"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="0.5"
+        opacity="0.4"
+      />
+      <text
+        x="60"
+        y="72"
+        textAnchor="middle"
+        fontFamily="Cinzel, Georgia, serif"
+        fontSize="34"
+        fill="currentColor"
+        letterSpacing="1"
+      >
+        N&amp;A
+      </text>
+    </svg>
+  );
+}
+
+/** Botanical sprig used to flank headings. */
+export function Sprig({
+  className = "",
+  flip = false,
+}: {
+  className?: string;
+  flip?: boolean;
+}) {
+  return (
+    <svg
+      viewBox="0 0 80 40"
+      className={className}
+      aria-hidden="true"
+      style={flip ? { transform: "scaleX(-1)" } : undefined}
+    >
+      <path
+        d="M2 32C18 32 30 26 40 16"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M14 30c-1-5 2-9 6-10 1 5-2 9-6 10Zm10-4c0-5 3-8 7-9 0 5-3 8-7 9Zm11-5c1-5 4-7 8-8-1 5-4 8-8 8Z"
+        fill="currentColor"
+        opacity="0.55"
+      />
+      <circle cx="42" cy="15" r="2.2" fill="currentColor" opacity="0.7" />
+    </svg>
+  );
+}
+
+/** A pointed arch frame that draws itself in. */
+export function ArchFrame({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 320 460"
+      className={className}
+      aria-hidden="true"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M10 450V180C10 96 78 26 160 10c82 16 150 86 150 170v270"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeDasharray="1400"
         className="animate-draw"
+        style={{ ["--dash" as string]: "1400" }}
+      />
+      <path
+        d="M24 450V182C24 104 88 40 160 26c72 14 136 78 136 156v268"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="0.5"
+        opacity="0.5"
       />
     </svg>
   );
 }
 
-/** Circular seal with a letter, a slow-turning dashed ring and star ticks. */
-export function Monogram({
-  letter,
-  className,
-}: {
-  letter: string;
-  className?: string;
-}) {
-  return (
-    <div className={`relative ${className ?? ""}`}>
-      <svg viewBox="0 0 120 120" className="h-full w-full" aria-hidden="true">
-        <circle
-          cx="60"
-          cy="60"
-          r="55"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="0.6"
-          opacity="0.45"
-          strokeDasharray="3 7"
-          className="origin-center animate-spin-slow"
-        />
-        <circle
-          cx="60"
-          cy="60"
-          r="44"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="0.9"
-          opacity="0.8"
-        />
-        <rect
-          x="34"
-          y="34"
-          width="52"
-          height="52"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="0.6"
-          opacity="0.5"
-          className="origin-center animate-spin-slower"
-        />
-        <rect
-          x="34"
-          y="34"
-          width="52"
-          height="52"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="0.6"
-          opacity="0.5"
-          transform="rotate(45 60 60)"
-          className="origin-center animate-spin-slower"
-        />
-      </svg>
-      <span className="foil absolute inset-0 grid place-items-center font-display text-3xl leading-none">
-        {letter}
-      </span>
-    </div>
-  );
-}
+const MOTES = Array.from({ length: 16 }, (_, i) => {
+  const s = Math.sin(i * 12.9898) * 43758.5453;
+  const r1 = s - Math.floor(s);
+  const t = Math.sin(i * 78.233) * 12345.6789;
+  const r2 = t - Math.floor(t);
+  return {
+    left: fx(6 + r1 * 88, 2),
+    top: fx(4 + r2 * 90, 2),
+    size: fx(2 + r1 * 3, 2),
+    delay: fx(r2 * 6, 2),
+    duration: fx(11 + r1 * 10, 2),
+  };
+});
 
-/** Hanging lantern silhouette used as a floating decoration. */
-export function Lantern({ className }: { className?: string }) {
+/** Slow-drifting gold dust. */
+export function Particles({ className = "" }: { className?: string }) {
   return (
-    <svg
+    <div
+      className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
       aria-hidden="true"
-      viewBox="0 0 40 70"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="0.9"
     >
-      <path d="M20 0 V14" />
-      <path d="M12 14 h16" />
-      <path d="M14 14 c-5 8 -6 20 0 30 h12 c6 -10 5 -22 0 -30z" />
-      <path d="M14 44 h12 l-2 8 h-8z" />
-      <path d="M20 52 v6" />
-      <circle cx="20" cy="30" r="4" opacity="0.7" />
-    </svg>
-  );
-}
-
-/** Tiny crescent used in the footer and nav monogram. */
-export function Crescent({ className }: { className?: string }) {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1"
-    >
-      <path d="M16.5 3.5a9 9 0 1 0 4 12.4A7.4 7.4 0 0 1 16.5 3.5z" />
-      <path d="M19 15.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z" />
-    </svg>
-  );
-}
-
-/** Endless strip of stars + diamonds that scrolls across the page. */
-export function MarqueeStrip() {
-  const cells = Array.from({ length: 26 }, (_, i) => i);
-  const row = (
-    <div className="flex shrink-0 items-center gap-8 pr-8">
-      {cells.map((i) => (
-        <span key={i} className="flex items-center gap-8">
-          {i % 3 === 0 ? (
-            <Star8 size={11} className="text-gold/70" />
-          ) : (
-            <span className="h-1.5 w-1.5 rotate-45 bg-gold/40" />
-          )}
-          <span className="h-px w-10 bg-gold/20" />
-        </span>
+      {MOTES.map((m, i) => (
+        <span
+          key={i}
+          className="mote absolute rounded-full bg-gold animate-drift"
+          style={{
+            left: `${m.left}%`,
+            top: `${m.top}%`,
+            width: `${m.size}px`,
+            height: `${m.size}px`,
+            animationDelay: `${m.delay}s`,
+            animationDuration: `${m.duration}s`,
+            opacity: 0.5,
+          }}
+        />
       ))}
-    </div>
-  );
-  return (
-    <div
-      aria-hidden="true"
-      className="relative flex overflow-hidden border-y border-gold/15 py-3"
-    >
-      <div className="flex animate-marquee">
-        {row}
-        {row}
-      </div>
-    </div>
-  );
-}
-
-/** Drifting gold motes. Positions are deterministic (no hydration drift). */
-export function Particles({ count = 30 }: { count?: number }) {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-0 overflow-hidden"
-    >
-      {Array.from({ length: count }, (_, i) => {
-        const size = 1.5 + rand(i * 3) * 3.5;
-        const left = rand(i * 7 + 1) * 100;
-        const top = rand(i * 11 + 2) * 100;
-        const dur = 9 + rand(i * 13 + 3) * 14;
-        const delay = rand(i * 17 + 4) * -20;
-        const twinkle = 2.8 + rand(i * 19 + 5) * 4;
-        const glow = 0.35 + rand(i * 23) * 0.5;
-        return (
-          <span
-            key={i}
-            className="mote absolute animate-drift rounded-full bg-gold"
-            style={{
-              width: `${fx(size)}px`,
-              height: `${fx(size)}px`,
-              left: `${fx(left)}%`,
-              top: `${fx(top)}%`,
-              opacity: fx(glow),
-              animationDuration: `${fx(dur)}s, ${fx(twinkle)}s`,
-              animationDelay: `${fx(delay)}s, ${fx(delay / 2)}s`,
-            }}
-          />
-        );
-      })}
     </div>
   );
 }
