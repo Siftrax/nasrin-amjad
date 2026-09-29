@@ -14,11 +14,8 @@ export function Footer() {
 
       <span className="rule-gold mx-auto mt-10 block w-40" />
 
-      <p className="mt-8 font-display text-sm tracking-[0.22em] uppercase text-ink">
+      <p className="mt-8 font-script text-4xl leading-[1.3] text-ink">
         {EVENT.bride.name} &amp; {EVENT.groom.name}
-      </p>
-      <p className="mt-2 font-body text-base italic text-ink-faint">
-        {EVENT.dateLong} · {EVENT.venueLine}
       </p>
 
       <Star8 className="mx-auto mt-8 h-4 w-4 text-gold" />
