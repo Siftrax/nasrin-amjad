@@ -8,7 +8,7 @@ export function Hero() {
       <Particles />
       <ArchFrame className="pointer-events-none absolute left-1/2 top-10 h-[86%] w-[min(92vw,620px)] -translate-x-1/2 text-gold opacity-40" />
 
-      <div className="relative z-10 flex flex-col items-center text-center animate-rise">
+      <div className="relative z-10 flex w-full min-w-0 flex-col items-center text-center animate-rise">
         <Monogram className="h-24 w-24 text-gold" />
 
         <p className="mt-8 arabic text-xl sm:text-2xl">
@@ -18,21 +18,21 @@ export function Hero() {
         <p className="eyebrow mt-8">You are invited to the</p>
         <p className="eyebrow mt-1">Nikah ceremony of</p>
 
-        <h1 className="mt-8 font-script text-6xl leading-[1.25] text-ink sm:text-8xl">
+        <h1 className="mt-8 w-full min-w-0 px-3 font-script text-[3.25rem] leading-[1.25] text-ink min-[375px]:text-6xl sm:px-8 sm:text-8xl">
           <span className="foil">{EVENT.bride.name}</span>
           <span className="mx-3 text-gold-deep">&amp;</span>
           <span className="foil">{EVENT.groom.name}</span>
         </h1>
 
-        <div className="mt-8 flex items-center gap-4 text-gold">
-          <Sprig className="h-6 w-14" />
-          <p className="font-display text-xs tracking-[0.34em] uppercase text-ink-soft">
+        <div className="mt-8 grid w-full max-w-sm grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 px-2 text-gold sm:gap-4 sm:px-0">
+          <Sprig className="h-6 w-full min-w-0" />
+          <p className="whitespace-nowrap font-display text-[0.65rem] tracking-[0.28em] uppercase text-ink-soft sm:text-xs sm:tracking-[0.34em]">
             {EVENT.dateShort}
           </p>
-          <Sprig className="h-6 w-14" flip />
+          <Sprig className="h-6 w-full min-w-0" flip />
         </div>
 
-        <p className="mt-6 max-w-sm font-body text-lg italic leading-relaxed text-ink-soft">
+        <p className="mt-6 max-w-sm px-3 font-body text-lg italic leading-relaxed text-ink-soft sm:px-0">
           Join us for a morning of love, laughter and duas as we begin our
           forever.
         </p>
