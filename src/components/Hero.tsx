@@ -18,9 +18,9 @@ export function Hero() {
         <p className="eyebrow mt-8">You are invited to the</p>
         <p className="eyebrow mt-1">Nikah ceremony of</p>
 
-        <h1 className="mt-8 font-display text-5xl leading-[1.1] text-ink sm:text-7xl">
+        <h1 className="mt-8 font-script text-6xl leading-[1.25] text-ink sm:text-8xl">
           <span className="foil">{EVENT.bride.name}</span>
-          <span className="mx-3 font-body italic text-gold-deep">&amp;</span>
+          <span className="mx-3 text-gold-deep">&amp;</span>
           <span className="foil">{EVENT.groom.name}</span>
         </h1>
 

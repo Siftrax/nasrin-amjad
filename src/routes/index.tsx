@@ -8,8 +8,6 @@ import { Families } from "@/components/Families";
 import { Countdown } from "@/components/Countdown";
 import { Timeline } from "@/components/Timeline";
 import { Details } from "@/components/Details";
-import { DressCode } from "@/components/DressCode";
-import { Rsvp } from "@/components/Rsvp";
 import { Footer } from "@/components/Footer";
 
 export const Route = createFileRoute("/")({
@@ -59,8 +57,6 @@ function Invitation() {
         </div>
         <Timeline />
         <Details />
-        <DressCode />
-        <Rsvp />
       </main>
       <Footer />
     </div>
