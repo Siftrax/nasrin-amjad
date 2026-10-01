@@ -14,7 +14,7 @@ export function Footer() {
 
       <span className="rule-gold mx-auto mt-10 block w-40" />
 
-      <p className="mt-8 font-script text-4xl leading-[1.3] text-ink">
+      <p className="mt-8 font-script capitalize text-4xl leading-[1.3] text-ink">
         {EVENT.bride.name} &amp; {EVENT.groom.name}
       </p>
 

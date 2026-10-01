@@ -26,7 +26,7 @@ function Person({
         {parents}
       </p>
       <Sprig className="mt-5 h-5 w-12 text-gold" />
-      <h3 className="mt-4 font-script text-5xl leading-[1.3] text-gold-deep sm:text-6xl">
+      <h3 className="mt-4 font-script capitalize text-5xl leading-[1.3] text-gold-deep sm:text-6xl">
         {name}
       </h3>
       <p className="mt-4 font-body text-base italic leading-relaxed text-ink-soft">

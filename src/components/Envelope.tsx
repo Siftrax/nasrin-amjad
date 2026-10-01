@@ -6,9 +6,21 @@ import { Monogram } from "@/components/Ornaments";
  * Full-screen "tap to open" envelope. Locks scrolling until the guest
  * opens it, then lifts away to reveal the invitation.
  */
-export function Envelope({ onOpen }: { onOpen?: () => void }) {
+export function Envelope({
+  onOpen,
+  onTap,
+}: {
+  onOpen?: () => void;
+  onTap?: () => void;
+}) {
   const [opening, setOpening] = useState(false);
   const [gone, setGone] = useState(false);
+
+  const start = () => {
+    if (opening) return;
+    onTap?.();
+    setOpening(true);
+  };
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -34,9 +46,9 @@ export function Envelope({ onOpen }: { onOpen?: () => void }) {
       role="button"
       tabIndex={0}
       aria-label="Open the invitation"
-      onClick={() => setOpening(true)}
+      onClick={start}
       onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") setOpening(true);
+        if (e.key === "Enter" || e.key === " ") start();
       }}
       className="envelope-shell fixed inset-0 z-[90] flex cursor-pointer select-none flex-col items-center justify-center px-6"
       style={{
