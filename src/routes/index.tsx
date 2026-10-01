@@ -1,4 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useCallback, useRef, useState } from "react";
+
+import { MusicToggle, type MusicHandle } from "@/components/MusicToggle";
 
 import { Envelope } from "@/components/Envelope";
 import { Hero } from "@/components/Hero";
@@ -42,9 +45,13 @@ export const Route = createFileRoute("/")({
 });
 
 function Invitation() {
+  const music = useRef<MusicHandle>(null);
+  const [opened, setOpened] = useState(false);
+  const handleOpen = useCallback(() => setOpened(true), []);
   return (
     <div className="min-h-screen bg-background">
-      <Envelope />
+      <MusicToggle ref={music} visible={opened} />
+      <Envelope onTap={() => music.current?.play()} onOpen={handleOpen} />
       <main>
         <Hero />
         <div id="date">
