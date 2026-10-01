@@ -106,11 +106,39 @@ export function ScratchDate() {
         <p className="eyebrow">The Date</p>
         <Divider className="mt-6" />
 
-        <div
-          ref={wrapRef}
-          className="card-paper relative mx-auto mt-10 h-56 w-full max-w-md overflow-hidden"
-        >
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
+        <div className="relative mx-auto mt-10 w-full max-w-md">
+          {revealed ? (
+            <div
+              className="pointer-events-none absolute inset-0 z-20 overflow-visible"
+              aria-hidden="true"
+            >
+              <span className="burst-ring" />
+              {CONFETTI.map((c, i) => (
+                <span
+                  key={i}
+                  className="confetti-bit"
+                  style={{
+                    background: c.color,
+                    borderRadius: c.round ? "9999px" : "2px",
+                    animationDelay: c.delay,
+                    ["--cx" as string]: c.cx,
+                    ["--cy" as string]: c.cy,
+                    ["--cr" as string]: c.cr,
+                  }}
+                />
+              ))}
+            </div>
+          ) : null}
+
+          <div
+            ref={wrapRef}
+            className="card-paper relative h-56 w-full overflow-hidden"
+          >
+          <div
+            className={`absolute inset-0 flex flex-col items-center justify-center gap-1 ${
+              revealed ? "animate-date-pop" : ""
+            }`}
+          >
             <p className="font-display text-6xl text-gold-deep sm:text-7xl">
               {EVENT.dateDay}
             </p>
