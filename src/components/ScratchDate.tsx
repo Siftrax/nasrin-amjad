@@ -177,6 +177,7 @@ export function ScratchDate() {
               drawing.current = false;
             }}
           />
+          </div>
         </div>
 
         <button
