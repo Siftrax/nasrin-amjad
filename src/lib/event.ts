@@ -68,11 +68,9 @@ export const EVENT = {
   },
 } as const;
 
-/** Google Maps directions link for the hall. */
+/** Google Maps directions link for the hall (shared by the family). */
 export function mapsUrl(): string {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    `${EVENT.venueLine}, ${EVENT.venueRegion}`,
-  )}`;
+  return "https://maps.app.goo.gl/FC52GVqoBDqgK6bY9";
 }
 
 const toStamp = (d: Date): string =>

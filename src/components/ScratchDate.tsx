@@ -7,6 +7,28 @@ import { Divider } from "@/components/Ornaments";
  * Scratch-off foil panel that reveals the wedding date.
  * Guests drag a finger or the cursor across the gold coating.
  */
+/** Deterministic confetti pieces — identical on server and client. */
+const CONFETTI = Array.from({ length: 36 }, (_, i) => {
+  const angle = (i / 36) * Math.PI * 2 + (i % 3) * 0.19;
+  const distance = 110 + (i % 5) * 34;
+  const palette = [
+    "var(--gold)",
+    "var(--gold-bright)",
+    "var(--gold-deep)",
+    "var(--champagne)",
+    "var(--rose)",
+    "var(--sage)",
+  ];
+  return {
+    cx: `${(Math.cos(angle) * distance).toFixed(2)}px`,
+    cy: `${(Math.sin(angle) * distance * 0.82).toFixed(2)}px`,
+    cr: `${((i * 47) % 360).toFixed(2)}deg`,
+    color: palette[i % palette.length],
+    delay: `${((i % 6) * 35).toFixed(0)}ms`,
+    round: i % 4 === 0,
+  };
+});
+
 export function ScratchDate() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
@@ -84,11 +106,39 @@ export function ScratchDate() {
         <p className="eyebrow">The Date</p>
         <Divider className="mt-6" />
 
-        <div
-          ref={wrapRef}
-          className="card-paper relative mx-auto mt-10 h-56 w-full max-w-md overflow-hidden"
-        >
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-1">
+        <div className="relative mx-auto mt-10 w-full max-w-md">
+          {revealed ? (
+            <div
+              className="pointer-events-none absolute inset-0 z-20 overflow-visible"
+              aria-hidden="true"
+            >
+              <span className="burst-ring" />
+              {CONFETTI.map((c, i) => (
+                <span
+                  key={i}
+                  className="confetti-bit"
+                  style={{
+                    background: c.color,
+                    borderRadius: c.round ? "9999px" : "2px",
+                    animationDelay: c.delay,
+                    ["--cx" as string]: c.cx,
+                    ["--cy" as string]: c.cy,
+                    ["--cr" as string]: c.cr,
+                  }}
+                />
+              ))}
+            </div>
+          ) : null}
+
+          <div
+            ref={wrapRef}
+            className="card-paper relative h-56 w-full overflow-hidden"
+          >
+          <div
+            className={`absolute inset-0 flex flex-col items-center justify-center gap-1 ${
+              revealed ? "animate-date-pop" : ""
+            }`}
+          >
             <p className="font-display text-6xl text-gold-deep sm:text-7xl">
               {EVENT.dateDay}
             </p>
@@ -127,6 +177,7 @@ export function ScratchDate() {
               drawing.current = false;
             }}
           />
+          </div>
         </div>
 
         <button
