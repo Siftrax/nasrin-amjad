@@ -7,6 +7,28 @@ import { Divider } from "@/components/Ornaments";
  * Scratch-off foil panel that reveals the wedding date.
  * Guests drag a finger or the cursor across the gold coating.
  */
+/** Deterministic confetti pieces — identical on server and client. */
+const CONFETTI = Array.from({ length: 36 }, (_, i) => {
+  const angle = (i / 36) * Math.PI * 2 + (i % 3) * 0.19;
+  const distance = 110 + (i % 5) * 34;
+  const palette = [
+    "var(--gold)",
+    "var(--gold-bright)",
+    "var(--gold-deep)",
+    "var(--champagne)",
+    "var(--rose)",
+    "var(--sage)",
+  ];
+  return {
+    cx: `${(Math.cos(angle) * distance).toFixed(2)}px`,
+    cy: `${(Math.sin(angle) * distance * 0.82).toFixed(2)}px`,
+    cr: `${((i * 47) % 360).toFixed(2)}deg`,
+    color: palette[i % palette.length],
+    delay: `${((i % 6) * 35).toFixed(0)}ms`,
+    round: i % 4 === 0,
+  };
+});
+
 export function ScratchDate() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const wrapRef = useRef<HTMLDivElement | null>(null);
