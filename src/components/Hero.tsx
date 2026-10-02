@@ -20,10 +20,8 @@ export function Hero() {
 
         <h1 className="mt-8 flex w-full min-w-0 flex-col items-center gap-1 px-3 font-script capitalize text-[3.25rem] leading-[1.25] text-ink min-[375px]:text-6xl sm:px-8 sm:text-8xl">
           <span className="foil inline-block px-[0.25em] py-[0.1em]">{EVENT.bride.name}</span>
-          <span className="block">
-            <span className="mr-1 text-gold-deep">&amp;</span>
-            <span className="foil inline-block px-[0.25em] py-[0.1em]">{EVENT.groom.name}</span>
-          </span>
+          <span className="block text-gold-deep">&amp;</span>
+          <span className="foil inline-block px-[0.25em] py-[0.1em]">{EVENT.groom.name}</span>
         </h1>
 
         <div className="mt-8 flex w-full max-w-sm items-center justify-center gap-3 text-gold sm:gap-4">
