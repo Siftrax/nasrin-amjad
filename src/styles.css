@@ -159,7 +159,7 @@
   --font-body: "Cormorant Garamond", Georgia, serif;
   --font-sans: "Jost", ui-sans-serif, system-ui, sans-serif;
   --font-arabic: "Amiri", "Scheherazade New", serif;
-  --font-script: "Great Vibes", "Cormorant Garamond", cursive;
+  --font-script: "Pinyon Script", "Cormorant Garamond", cursive;
 
   --animate-foil: foil-sweep 7s linear infinite;
   --animate-drift: drift 16s ease-in-out infinite;
