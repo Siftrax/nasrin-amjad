@@ -546,7 +546,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--ivory);
+  background: #f7eddc; /* matches the envelope photo backdrop */
   cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
