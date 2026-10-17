@@ -24,7 +24,7 @@ export const EVENT = {
     parents: "Mr. & Mrs. Abdul Latheef and Ayshabi",
     father: "Abdul Latheef",
     mother: "Ayshabi",
-    house: "Pichappuram Meethal",
+    house: "Pichappurath Meethal",
     street: "",
     locality: "Palazhi",
   },
@@ -47,11 +47,10 @@ export const EVENT = {
     reference: "Surah An-Naba 78:8",
   },
   timeline: [
-    { time: "9:30 am", label: "Guest Arrival & Welcome" },
     { time: "10:00 am", label: "Nikah Ceremony" },
     { time: "10:45 am", label: "Duas & Blessings" },
     { time: "11:15 am", label: "Photographs with the Families" },
-    { time: "12:00 pm", label: "Sadya & Feast" },
+    { time: "12:00 pm", label: "Feast" },
   ],
   dressCode: {
     title: "Traditional Attire",

@@ -16,4 +16,7 @@
 - [x] Names on two lines, date removed from opening, mobile padding for the message
 - [x] Directions button points to the family's shared Google Maps link
 - [x] Celebration pop effect when the date is scratched
+- [x] Use the family's uploaded muted video as the hero background with readable text
+- [x] Correct the groom's house name to Pichappurath Meethal
+- [x] Remove guest arrival and welcome from the timeline; show Feast only at the last item
 - Blocked: Hijri date, audio track, RSVP destination (phone/email) — pending from user

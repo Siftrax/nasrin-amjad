@@ -310,6 +310,29 @@
 
 /* ── Patterns ───────────────────────────────────────────── */
 
+/* Cinematic video background for the invitation's opening section. */
+.hero-video-scrim {
+  background: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--ink) 48%, transparent) 0%,
+    color-mix(in oklab, var(--ink) 56%, transparent) 52%,
+    color-mix(in oklab, var(--ink) 62%, transparent) 100%
+  );
+}
+.hero-video-section .arabic,
+.hero-video-section .eyebrow {
+  color: var(--gold-bright);
+  text-shadow: 0 1px 12px color-mix(in oklab, var(--ink) 75%, transparent);
+}
+.hero-video-section .foil,
+.hero-ampersand {
+  filter: drop-shadow(0 2px 14px color-mix(in oklab, var(--ink) 78%, transparent));
+}
+.hero-video-copy {
+  color: var(--ivory);
+  text-shadow: 0 1px 12px color-mix(in oklab, var(--ink) 80%, transparent);
+}
+
 /* Shimmering gold foil text */
 .foil {
   background-image: linear-gradient(
