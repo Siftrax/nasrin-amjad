@@ -21,3 +21,4 @@
 - Decorative inline styles must serialise identically on server and client
   (fixed-decimal strings, no `Math.random()`/`Date.now()` at render).
   Why: those caused a React hydration mismatch.
+- Uploaded media is registered through a Lovable Assets pointer in `src/assets` and rendered from its URL. Why: large media stays out of source while remaining available to the app.

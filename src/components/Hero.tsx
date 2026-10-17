@@ -1,10 +1,24 @@
 import { EVENT } from "@/lib/event";
 import { ArchFrame, Monogram, Particles, Sprig } from "@/components/Ornaments";
+import heroVideo from "@/assets/nasrin-amjad-hero.mp4.asset.json";
 
 /** Opening card: monogram, the two names, the essentials. */
 export function Hero() {
   return (
-    <section className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 py-24">
+    <section className="hero-video-section relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 py-24">
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        <source src={heroVideo.url} type="video/mp4" />
+      </video>
+      <div className="hero-video-scrim absolute inset-0" aria-hidden="true" />
       <Particles />
       <ArchFrame className="pointer-events-none absolute left-1/2 top-10 h-[86%] w-[min(92vw,620px)] -translate-x-1/2 text-gold opacity-40" />
 
@@ -20,7 +34,7 @@ export function Hero() {
 
         <h1 className="mt-8 flex w-full min-w-0 flex-col items-center gap-1 px-3 font-script capitalize text-[3.25rem] leading-[1.25] text-ink min-[375px]:text-6xl sm:px-8 sm:text-8xl">
           <span className="foil inline-block px-[0.25em] py-[0.1em]">{EVENT.bride.name}</span>
-          <span className="block text-gold-deep">&amp;</span>
+          <span className="hero-ampersand block text-gold-bright">&amp;</span>
           <span className="foil inline-block px-[0.25em] py-[0.1em]">{EVENT.groom.name}</span>
         </h1>
 
@@ -29,7 +43,7 @@ export function Hero() {
           <Sprig className="h-6 w-20 min-w-0" flip />
         </div>
 
-        <p className="mt-6 max-w-sm px-8 font-body text-lg italic leading-relaxed text-ink-soft sm:px-0">
+        <p className="hero-video-copy mt-6 max-w-sm px-8 font-body text-lg italic leading-relaxed sm:px-0">
           Join us for a morning of love, laughter and duas as we begin our
           forever.
         </p>
