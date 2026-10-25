@@ -595,7 +595,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 49%;
 }
 .wei-light {
   position: absolute;
@@ -616,7 +616,46 @@
   pointer-events: none;
 }
 .wei-overlay.is-opening .wei-light {
-  animation: wei-bloom 2.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+  animation: wei-bloom 2.4s cubic-bezier(0.22, 1, 0.36, 1) 1.3s forwards;
+}
+.wei-ring {
+  position: absolute;
+  left: 50%;
+  top: 49%;
+  width: clamp(210px, 54vmin, 430px);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    color-mix(in oklab, var(--gold-bright) 95%, transparent) 50deg,
+    transparent 140deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
+  filter: drop-shadow(0 0 8px color-mix(in oklab, var(--gold-bright) 80%, transparent));
+  opacity: 0;
+  pointer-events: none;
+}
+.wei-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1.5px solid color-mix(in oklab, var(--gold-bright) 55%, transparent);
+}
+.wei-overlay.is-opening .wei-ring {
+  animation:
+    wei-ring-spin 1.4s linear infinite,
+    wei-ring-in 0.4s ease 0.05s forwards;
+}
+@keyframes wei-ring-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes wei-ring-in {
+  to { opacity: 1; }
 }
 @keyframes wei-bloom {
   0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
