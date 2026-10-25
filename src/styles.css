@@ -622,7 +622,7 @@
   position: absolute;
   left: 50%;
   top: 49%;
-  width: clamp(160px, 44vmin, 360px);
+  width: clamp(210px, 54vmin, 430px);
   aspect-ratio: 1;
   border-radius: 9999px;
   transform: translate(-50%, -50%);
