@@ -63,6 +63,7 @@ export function Envelope({
           className="wei-img"
         />
         <div className="wei-light" aria-hidden="true" />
+        <div className="wei-ring" aria-hidden="true" />
       </div>
 
       <div className="wei-tap">
