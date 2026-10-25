@@ -47,8 +47,8 @@ export const EVENT = {
     reference: "Surah An-Naba 78:8",
   },
   timeline: [
-    { time: "10:00 am", label: "Nikah Ceremony" },
-    { time: "10:45 am", label: "Duas & Blessings" },
+    { time: "10:00 am", label: "Guest Arrival" },
+    { time: "10:45 am", label: "Nikkah" },
     { time: "11:15 am", label: "Photographs with the Families" },
     { time: "12:00 pm", label: "Feast" },
   ],
