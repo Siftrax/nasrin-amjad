@@ -57,8 +57,8 @@ export function Envelope({
         <img
           src={cover}
           alt="Open your invitation"
-          width={1080}
-          height={1920}
+          width={768}
+          height={1376}
           draggable={false}
           className="wei-img"
         />
