@@ -62,8 +62,11 @@ export function Envelope({
           draggable={false}
           className="wei-img"
         />
+        <div className="wei-flap" aria-hidden="true">
+          <img src={cover} alt="" draggable={false} />
+        </div>
+        <div className="wei-glow" aria-hidden="true" />
         <div className="wei-light" aria-hidden="true" />
-        <div className="wei-ring" aria-hidden="true" />
       </div>
 
       <div className="wei-tap">
