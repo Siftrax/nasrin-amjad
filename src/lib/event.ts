@@ -48,8 +48,8 @@ export const EVENT = {
   },
   timeline: [
     { time: "10:00 am", label: "Guest Arrival" },
-    { time: "10:45 am", label: "Nikkah" },
-    { time: "11:15 am", label: "Photographs with the Families" },
+    { time: "10:30 AM", label: "Nikkah" },
+    { time: "11:00 AM", label: "Photographs with the Families" },
     { time: "12:00 pm", label: "Feast" },
   ],
   dressCode: {
