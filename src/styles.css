@@ -618,44 +618,54 @@
 .wei-overlay.is-opening .wei-light {
   animation: wei-bloom 2.4s cubic-bezier(0.22, 1, 0.36, 1) 1.3s forwards;
 }
-.wei-ring {
+/* Warm golden rim glow pulsing softly around the wax seal */
+.wei-glow {
   position: absolute;
   left: 50%;
   top: 49%;
-  width: clamp(210px, 54vmin, 430px);
+  width: clamp(150px, 36vmin, 300px);
   aspect-ratio: 1;
   border-radius: 9999px;
-  transform: translate(-50%, -50%);
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    color-mix(in oklab, var(--gold-bright) 95%, transparent) 50deg,
-    transparent 140deg
-  );
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
-  filter: drop-shadow(0 0 8px color-mix(in oklab, var(--gold-bright) 80%, transparent));
+  transform: translate(-50%, -50%) scale(0.9);
   opacity: 0;
+  box-shadow:
+    0 0 24px 6px color-mix(in oklab, var(--gold-bright) 70%, transparent),
+    inset 0 0 22px 4px color-mix(in oklab, var(--gold-bright) 55%, transparent);
+  background: radial-gradient(circle, transparent 55%, color-mix(in oklab, var(--gold-bright) 35%, transparent) 72%, transparent 80%);
   pointer-events: none;
 }
-.wei-ring::before {
-  content: "";
+.wei-overlay.is-opening .wei-glow {
+  animation: wei-glow 1.6s ease-out forwards;
+}
+@keyframes wei-glow {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+  35% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+  60% { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+}
+/* Flap: top half of the cover lifts back in 3D, revealing light */
+.wei-flap {
   position: absolute;
-  inset: 0;
-  border-radius: 9999px;
-  border: 1.5px solid color-mix(in oklab, var(--gold-bright) 55%, transparent);
+  inset: 0 0 51% 0;
+  overflow: hidden;
+  transform-origin: top center;
+  pointer-events: none;
+  opacity: 0;
 }
-.wei-overlay.is-opening .wei-ring {
-  animation:
-    wei-ring-spin 1.4s linear infinite,
-    wei-ring-in 0.4s ease 0.05s forwards;
+.wei-flap img {
+  display: block;
+  width: 100%;
+  height: 204.08%;
+  object-fit: cover;
+  object-position: center 49%;
 }
-@keyframes wei-ring-spin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
+.wei-stage { perspective: 1400px; }
+.wei-overlay.is-opening .wei-flap {
+  animation: wei-flap 1.3s cubic-bezier(0.5, 0, 0.2, 1) 0.9s forwards;
 }
-@keyframes wei-ring-in {
-  to { opacity: 1; }
+@keyframes wei-flap {
+  0% { opacity: 1; transform: rotateX(0deg); filter: brightness(1); }
+  100% { opacity: 0; transform: rotateX(-110deg); filter: brightness(1.5); }
 }
 @keyframes wei-bloom {
   0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
