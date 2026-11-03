@@ -8,9 +8,9 @@ import { Divider } from "@/components/Ornaments";
  * Guests drag a finger or the cursor across the gold coating.
  */
 /** Deterministic confetti pieces — identical on server and client. */
-const CONFETTI = Array.from({ length: 36 }, (_, i) => {
-  const angle = (i / 36) * Math.PI * 2 + (i % 3) * 0.19;
-  const distance = 110 + (i % 5) * 34;
+const CONFETTI = Array.from({ length: 56 }, (_, i) => {
+  const angle = (i / 56) * Math.PI * 2 + (i % 5) * 0.16;
+  const distance = 130 + (i % 7) * 38;
   const palette = [
     "var(--gold)",
     "var(--gold-bright)",
@@ -18,14 +18,28 @@ const CONFETTI = Array.from({ length: 36 }, (_, i) => {
     "var(--champagne)",
     "var(--rose)",
     "var(--sage)",
+    "var(--sand)",
   ];
   return {
     cx: `${(Math.cos(angle) * distance).toFixed(2)}px`,
-    cy: `${(Math.sin(angle) * distance * 0.82).toFixed(2)}px`,
-    cr: `${((i * 47) % 360).toFixed(2)}deg`,
+    cy: `${(Math.sin(angle) * distance * 0.86).toFixed(2)}px`,
+    cr: `${(((i * 47) % 360) + 240).toFixed(2)}deg`,
     color: palette[i % palette.length],
-    delay: `${((i % 6) * 35).toFixed(0)}ms`,
-    round: i % 4 === 0,
+    delay: `${((i % 8) * 40).toFixed(0)}ms`,
+    size: 7 + (i % 4) * 3,
+    round: i % 3 === 0,
+  };
+});
+
+/** Twinkling gold stars that ring the card during the celebration. */
+const SPARKLES = Array.from({ length: 14 }, (_, i) => {
+  const angle = (i / 14) * Math.PI * 2 + 0.22;
+  const radius = 165 + (i % 4) * 34;
+  return {
+    x: `${(Math.cos(angle) * radius).toFixed(2)}px`,
+    y: `${(Math.sin(angle) * radius * 0.8).toFixed(2)}px`,
+    delay: `${(i * 90).toFixed(0)}ms`,
+    size: 10 + (i % 3) * 5,
   };
 });
 
@@ -112,13 +126,29 @@ export function ScratchDate() {
               className="pointer-events-none absolute inset-0 z-20 overflow-visible"
               aria-hidden="true"
             >
+              <span className="burst-glow" />
               <span className="burst-ring" />
+              {SPARKLES.map((s, i) => (
+                <span
+                  key={`star-${i}`}
+                  className="sparkle-bit"
+                  style={{
+                    left: `calc(50% + ${s.x})`,
+                    top: `calc(50% + ${s.y})`,
+                    width: s.size,
+                    height: s.size,
+                    animationDelay: s.delay,
+                  }}
+                />
+              ))}
               {CONFETTI.map((c, i) => (
                 <span
                   key={i}
                   className="confetti-bit"
                   style={{
                     background: c.color,
+                    width: c.size,
+                    height: c.round ? c.size : Math.round(c.size * 1.7),
                     borderRadius: c.round ? "9999px" : "2px",
                     animationDelay: c.delay,
                     ["--cx" as string]: c.cx,
