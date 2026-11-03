@@ -126,13 +126,29 @@ export function ScratchDate() {
               className="pointer-events-none absolute inset-0 z-20 overflow-visible"
               aria-hidden="true"
             >
+              <span className="burst-glow" />
               <span className="burst-ring" />
+              {SPARKLES.map((s, i) => (
+                <span
+                  key={`star-${i}`}
+                  className="sparkle-bit"
+                  style={{
+                    left: `calc(50% + ${s.x})`,
+                    top: `calc(50% + ${s.y})`,
+                    width: s.size,
+                    height: s.size,
+                    animationDelay: s.delay,
+                  }}
+                />
+              ))}
               {CONFETTI.map((c, i) => (
                 <span
                   key={i}
                   className="confetti-bit"
                   style={{
                     background: c.color,
+                    width: c.size,
+                    height: c.round ? c.size : Math.round(c.size * 1.7),
                     borderRadius: c.round ? "9999px" : "2px",
                     animationDelay: c.delay,
                     ["--cx" as string]: c.cx,
