@@ -328,6 +328,11 @@
 .hero-ampersand {
   filter: drop-shadow(0 2px 14px color-mix(in oklab, var(--ink) 78%, transparent));
 }
+.hero-name {
+  color: var(--gold-deep);
+  -webkit-text-fill-color: currentColor;
+  text-shadow: 0 2px 14px color-mix(in oklab, var(--ivory) 55%, transparent);
+}
 .hero-video-copy {
   color: var(--ivory);
   text-shadow: 0 1px 12px color-mix(in oklab, var(--ink) 80%, transparent);

@@ -120,7 +120,10 @@ export function ScratchDate() {
         <p className="eyebrow">The Date</p>
         <Divider className="mt-6" />
 
-        <div className="relative mx-auto mt-10 w-full max-w-md">
+        <div
+          ref={wrapRef}
+          className="relative mx-auto mt-10 w-full max-w-lg"
+        >
           {revealed ? (
             <div
               className="pointer-events-none absolute inset-0 z-20 overflow-visible"
@@ -161,31 +164,43 @@ export function ScratchDate() {
           ) : null}
 
           <div
-            ref={wrapRef}
-            className="card-paper relative h-56 w-full overflow-hidden"
-          >
-          <div
-            className={`absolute inset-0 flex flex-col items-center justify-center gap-1 ${
+            className={`relative grid grid-cols-3 gap-2 sm:gap-4 ${
               revealed ? "animate-date-pop" : ""
             }`}
           >
-            <p className="font-display text-6xl text-gold-deep sm:text-7xl">
-              {EVENT.dateDay}
-            </p>
-            <p className="font-display text-lg tracking-[0.3em] uppercase text-ink">
-              {EVENT.dateMonth}
-            </p>
-            <p className="font-sans text-xs tracking-[0.4em] text-ink-soft">
-              {EVENT.dateYear}
-            </p>
-            <p className="mt-3 font-display text-sm tracking-[0.25em] uppercase text-gold-deep">
+            <div className="card-paper flex h-40 flex-col items-center justify-center gap-2 text-center">
+              <span className="font-display text-[0.6rem] tracking-[0.25em] uppercase text-ink-faint">
+                Date
+              </span>
+              <p className="font-display text-5xl text-gold-deep sm:text-6xl">
+                {EVENT.dateDay}
+              </p>
+            </div>
+            <div className="card-paper flex h-40 flex-col items-center justify-center gap-2 text-center">
+              <span className="font-display text-[0.6rem] tracking-[0.25em] uppercase text-ink-faint">
+                Month
+              </span>
+              <p className="font-display text-xl tracking-[0.08em] uppercase text-ink sm:text-2xl">
+                {EVENT.dateMonth}
+              </p>
+            </div>
+            <div className="card-paper flex h-40 flex-col items-center justify-center gap-2 text-center">
+              <span className="font-display text-[0.6rem] tracking-[0.25em] uppercase text-ink-faint">
+                Year
+              </span>
+              <p className="font-display text-3xl text-ink sm:text-4xl">
+                {EVENT.dateYear}
+              </p>
+            </div>
+            <p className="col-span-3 mt-2 text-center font-display text-sm tracking-[0.25em] uppercase text-gold-deep">
               {EVENT.timeShort}
             </p>
           </div>
 
           <canvas
             ref={canvasRef}
-            className="absolute inset-0 h-full w-full touch-none"
+            aria-label="Scratch to reveal the wedding date"
+            className="absolute inset-0 z-10 h-full w-full touch-none"
             style={{
               opacity: revealed ? 0 : 1,
               transition: "opacity 0.8s ease",
@@ -207,7 +222,6 @@ export function ScratchDate() {
               drawing.current = false;
             }}
           />
-          </div>
         </div>
 
         <button
