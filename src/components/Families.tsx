@@ -22,11 +22,11 @@ function Person({
       <p className="font-display text-[0.6rem] tracking-[0.32em] uppercase text-ink-faint">
         {lineageWords}
       </p>
-      <p className="mt-3 font-display text-sm tracking-[0.18em] uppercase text-ink">
+      <p className="mt-3 font-display text-base tracking-[0.1em] uppercase text-ink sm:text-lg">
         {parents}
       </p>
       <Sprig className="mt-5 h-5 w-12 text-gold" />
-      <h3 className="mt-4 font-script capitalize text-5xl leading-[1.3] text-gold-deep sm:text-6xl">
+      <h3 className="mt-4 font-script capitalize text-6xl leading-[1.3] text-gold-deep sm:text-7xl">
         {name}
       </h3>
       <p className="mt-4 font-body text-base italic leading-relaxed text-ink-soft">

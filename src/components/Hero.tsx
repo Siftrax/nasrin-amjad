@@ -32,10 +32,10 @@ export function Hero() {
         <p className="eyebrow mt-8">You are invited to the</p>
         <p className="eyebrow mt-1">Nikah ceremony of</p>
 
-        <h1 className="mt-8 flex w-full min-w-0 flex-col items-center gap-1 px-3 font-script capitalize text-[3.25rem] leading-[1.25] text-ink min-[375px]:text-6xl sm:px-8 sm:text-8xl">
-          <span className="foil inline-block px-[0.25em] py-[0.1em]">{EVENT.bride.name}</span>
+        <h1 className="mt-8 flex w-full min-w-0 flex-col items-center gap-1 px-3 font-script capitalize text-[3.75rem] leading-[1.25] text-ink min-[375px]:text-7xl sm:px-8 sm:text-9xl">
+          <span className="hero-name inline-block px-[0.25em] py-[0.1em]">{EVENT.bride.name}</span>
           <span className="hero-ampersand block text-gold-bright">&amp;</span>
-          <span className="foil inline-block px-[0.25em] py-[0.1em]">{EVENT.groom.name}</span>
+          <span className="hero-name inline-block px-[0.25em] py-[0.1em]">{EVENT.groom.name}</span>
         </h1>
 
         <div className="mt-8 flex w-full max-w-sm items-center justify-center gap-3 text-gold sm:gap-4">
