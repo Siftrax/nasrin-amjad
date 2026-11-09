@@ -329,9 +329,9 @@
   filter: drop-shadow(0 2px 14px color-mix(in oklab, var(--ink) 78%, transparent));
 }
 .hero-name {
-  color: var(--gold-deep);
+  color: var(--gold-bright);
   -webkit-text-fill-color: currentColor;
-  text-shadow: 0 2px 14px color-mix(in oklab, var(--ivory) 55%, transparent);
+  text-shadow: 0 2px 14px color-mix(in oklab, var(--ink) 85%, transparent);
 }
 .hero-video-copy {
   color: var(--ivory);
